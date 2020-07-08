@@ -1,0 +1,12 @@
+**** Instructions to run the Flask Project *****
+import database file
+1. Open project in VSCode
+2. Open terminal of VSCode
+3. Type 'flask run'
+4. Open the generated link in browser
+
+
+
+Any Problems in Execution Contact
+George Devasia - georgedevasia12@gmail.com 
+Navya Y- navyayogeesha@gmail.com

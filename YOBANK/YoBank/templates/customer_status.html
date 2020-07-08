@@ -1,0 +1,46 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container-fluid">
+    <div class="col-md-12 mx-auto mt-4 bt">
+        <h4 class="text-center font-weight-bold pb-3">Customer Status</h4>
+
+        <table class="table table-striped">
+            <thead>
+                <tr class="border table-dark">
+                    <th class="border text-info">Customer ID</th>
+                    <th class="border text-info">Account ID</th>
+                    <th class="border text-info">Status</th>
+                    <th class="border text-info text-center">Message</th>
+                    <th class="border text-info">Account Type</th>
+                    <th class="border text-info">Operations</th>
+                    <th class="border text-info">View Profile</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if data %}
+                {% for i in data %}
+                <tr class="border">
+                    <td class="border">{{i['c_id']}}</td>
+                    <td class="border">{{i['acc_id']}}</td>
+                    <td class="border">{{i['status']}}</td>
+                    <td class="border text-center">{{i['message']}}</td>
+                    <td class="border">{{i['acc_type']}}</td>
+                    <td class="border text-center"><a href="{{url_for('customer_status')}}"
+                            class="btn btn-dark">Refresh</a></td>
+                    <td class="border"><a href="{{url_for('search_customer')}}" class="btn btn-info">View
+                            Details</a></td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class=" mx-auto btn btn-secondary">
+            <a href="{{url_for('customer_status')}}" class="text-white">Refresh the List</a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

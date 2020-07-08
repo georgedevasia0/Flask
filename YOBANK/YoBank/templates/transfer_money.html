@@ -1,0 +1,81 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container">
+    <div class="col-md-6 mx-auto mt-4  bt">
+        <h4 class="text-center font-weight-bold pb-3">Transfer Money</h4>
+        <form action="transfer_money" method="POST">
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-server"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="fid" placeholder="Transfer From - Account ID"
+                        required />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-server"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="tid" placeholder="Transfer To - Account ID"
+                        required />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-dollar"></i></span>
+                    </div>
+                    <input type="number" class="form-control" min="1" name="amt" placeholder="Transfer Amount"
+                        required />
+                </div>
+
+
+                <button type="submit" class="btn btn-info btn-block btnx">
+                    Transfer
+                </button>
+            </div>
+            {% for message in get_flashed_messages() %}
+            {%if 'Succesfully' in message%}
+            <p class="text-info text-center pt-3">{{message}}</p>
+            {%else%}
+            <p class="text-danger text-center pt-3">{{message}}</p>
+            {%endif%}
+            {% endfor %}
+        </form>
+
+
+    </div>
+</div>
+
+{% if done %}
+<hr style="width: 80%;" class="mt-2">
+<div class="container-fluid">
+    <div class="col-md-12 mx-auto mt-4 bt">
+        <h4 class="text-center font-weight-bold pb-3">Latest Account details</h4>
+
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr class="border" style="border-radius: 15px;">
+                    <th class="border text-white text-center">Account ID</th>
+                    <th class="border text-white text-center">Name</th>
+                    <th class="border text-white text-center">Account Type</th>
+                    <th class="border text-white text-center">Balance</th>
+                    <th class="border text-white text-center">Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if data1 %}
+                {% for i in data1 %}
+                <tr class="border">
+                    <td class="border text-center">{{i[0]}}</td>
+                    <td class="border text-center">{{i[4]}}</td>
+                    <td class="border text-center">{{i[2]}}</td>
+                    <td class="border text-center text-center">{{i[3]}}</td>
+                    <td class="border text-center">Active</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{%endif%}
+{% endblock %}

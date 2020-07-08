@@ -1,0 +1,128 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container">
+    <div class="col-md-6 mx-auto mt-4  bt">
+        {%if not btn %}
+        <h4 class="text-center font-weight-bold pb-3">Withdraw Money </h4>
+        <form action="withdraw_money" method="POST">
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-server"></i></span>
+                    </div>
+                    {%if data %}
+                    <input type="text" class="form-control" name="accid" value="{{data[0]}}" placeholder="{{data[0]}}"
+                        required />
+                    {%else%}
+                    <input type="text" class="form-control" name="accid" placeholder="Enter Account ID" required />
+                    {%endif%}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-dollar"></i></span>
+                    </div>
+                    {%if data %}
+                    <input type="text" class="form-control" name="amount" value="{{data[6]}}" placeholder="{{data[6]}}"
+                        required />
+                    {%else%}
+                    <input type="text" class="form-control" name="amount" placeholder="Enter Amount to Deposit"
+                        required />
+                    {%endif%}
+                </div>
+                {%if data %}
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><b>Customer ID : </b></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="{{data[1]}}" />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><b>Account ID : </b></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="{{data[0]}}" />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><b>Name : </b></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="{{data[4]}}" />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><b>Account Type : </b></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="{{data[2]}}" />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><b>Account Balance : </b></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="{{data[5]}}" />
+                </div>
+                {%endif%}
+                <div class="row mt-4">
+                    <div class="col-lg-6 pb-2">
+                        <button type="submit" name="submit" value="getaccount"
+                            class="btn btn-secondary btn-block btnx mb-3">
+                            <i class="bx bx-search"></i> Get Account
+                        </button>
+                    </div>
+                    <div class="col-lg-6">
+                        <button type="submit" name="submit" value="withdraw" class="btn btn-info btn-block btnx">
+                            Withdraw
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        {%else%}
+        <h4 class="text-center font-weight-bold pb-3">Latest Account Details </h4>
+        {%if data1 %}
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><b>Customer ID : </b></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="{{data1[1]}}" />
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><b>Account ID : </b></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="{{data1[0]}}" />
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><b>Name : </b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="{{data1[4]}}" />
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><b>Account Type : </b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="{{data1[2]}}" />
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><b>Account Balance : </b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="{{data1[3]}}" />
+        </div>
+        {%endif%}
+        {%endif%}
+
+
+        {% for message in get_flashed_messages() %}
+        {%if 'Withdrawn ' in message%}
+        <p class="text-info text-center pt-3">{{message}}</p>
+        {%else%}
+        <p class="text-danger text-center pt-3">{{message}}</p>
+        {%endif%}
+        {% endfor %}
+
+    </div>
+</div>
+
+
+{% endblock %}

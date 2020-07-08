@@ -1,0 +1,77 @@
+{% extends "index.html" %}
+{% block content %}
+
+
+<div class="container">
+    <div class="col-md-6 mx-auto mt-4  bt">
+        <h4 class="text-center font-weight-bold pb-3">Create Customer</h4>
+        <form action="create_customer" method="POST">
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-server"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="id" min="8" placeholder="Create SSN Id" required />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="name" placeholder="Customer Name" required />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-joystick-button"></i></span>
+                    </div>
+                    <input type="number" class="form-control" name="age" min="10" max="90" placeholder="Age" required />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-current-location"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="address" placeholder="Address" required />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-location-plus"></i></span>
+                    </div>
+                    <select name="state" id="gender" class="form-control" required>
+                        <option value="" selected>Select a State</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="karnataka">Karnataka</option>
+                        <option value="Tamilnadu">Tamilnadu</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-unite"></i></span>
+                    </div>
+                    <select name="city" id="city" class="form-control" required>
+                        <option value="" selected>Select a City</option>
+                        <option value="Kannur">Kannur</option>
+                        <option value="Mangalore">Mangalore</option>
+                        <option value="Uduppi">Uduppi</option>
+                    </select>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-lg-6 pb-2">
+                        <button type="reset" class="btn btn-danger btn-block btnx">
+                            Reset
+                        </button>
+                    </div>
+                    <div class="col-lg-6">
+                        <button type="submit" class="btn btn-info btn-block btnx">
+                            Create
+                        </button>
+                    </div>
+                </div>
+                {% for message in get_flashed_messages() %}
+                <p class="text-info text-center pt-2">{{message}}</p>
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

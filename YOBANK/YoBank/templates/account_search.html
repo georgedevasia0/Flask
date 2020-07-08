@@ -1,0 +1,84 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container">
+    <div class="col-md-6 mx-auto mt-4  bt">
+        <h4 class="text-center font-weight-bold pb-3"> Account Search</h4>
+        <form action="account_search" method="POST">
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="accid" placeholder="Enter Account ID" />
+                </div>
+                <p class="text-center">OR</p>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="custid" placeholder="Enter Customer ID" />
+                </div>
+                <button type="submit" class="btn btn-info btn-block btnx mb-2">
+                    Search
+                </button>
+                {% for message in get_flashed_messages() %}
+                {%if 'Yes' in message%}
+                <p class="text-info text-center pt-3">Account Found</p>
+                {%else%}
+                <p class="text-danger text-center pt-3">{{message}}</p>
+                {%endif%}
+                {% endfor %}
+            </div>
+        </form>
+        {% if data %}
+        <table class="table-striped table">
+            <tr>
+                <td><b>Name :</b></td>
+                <td>{{data[4]}}</td>
+            </tr>
+            <tr>
+                <td><b>Account ID :</b></td>
+                <td>{{data[0]}}</td>
+            </tr>
+            <tr>
+                <td><b>Customer ID :</b></td>
+                <td>{{data[1]}}</td>
+            </tr>
+            <tr>
+                <td><b>Account Type :</b></td>
+                <td>{{data[2]}}</td>
+            </tr>
+            <tr>
+                <td><b>Balance :</b></td>
+                <td>{{data[3]}}</td>
+            </tr>
+        </table>
+        {% endif%}
+        {% if data1 %}
+        <table class="table-striped table">
+            <tr>
+                <td colspan="2"><b>Name :</b></td>
+                <td>{{data1[-1]}}</td>
+            </tr>
+            <tr>
+                <td colspan="2"><b>Customer ID :</b></td>
+                <td>{{data1[0][0]['c_id']}}</td>
+            </tr>
+            <tr class="thead-dark">
+                <td><b>Account ID </b><i class="bx bx-caret-down-square"></i></td>
+                <td><b>Account Type </b><i class="bx bx-caret-down-square"></i></td>
+                <td><b>Balance </b><i class="bx bx-caret-down-square"></i></td>
+            </tr>
+            {% for i in data1[0] %}
+            <tr class="border">
+                <td><b>{{i['acc_id']}}</b></td>
+                <td><b>{{i['acc_type']}}</b></td>
+                <td><b>{{i['amount']}}</b></td>
+            </tr>
+            {%endfor %}
+        </table>
+        {% endif%}
+    </div>
+</div>
+
+{% endblock %}

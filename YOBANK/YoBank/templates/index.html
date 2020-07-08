@@ -1,0 +1,149 @@
+{% if session['username'] %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Yo Bank</title>
+    <link href="static/bootstrap.min.css" rel="stylesheet">
+    <link href="static/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="static/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ======= Mobile nav toggle button ======= -->
+    <button type="button" class="mobile-nav-toggle d-xl-none"><i class="bx bx-grid-alt"></i></button>
+    <!-- ======= Header ======= -->
+    <header id="header">
+        <div class="d-flex flex-column">
+            <div class="profile">
+                <img src="static/images/profile-img2.jpg" alt="" class="img-fluid rounded-circle">
+                <h1>{{session['username']}}</h1>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li class="active"><a href="{{url_for('index')}}"><i class=" bx bx-home"></i> <span>Home</span></a>
+                    </li>
+                    <li class="one"><a><i class="bx bx-user"></i> <span>Customer Management</span><span><i
+                                    class="bx bx-caret-down-square pt-1 pl-1" style="font-size:15px;"></i></span></a>
+
+                        {% if session['username']=='customer-account-executive' %}
+                        <ul class="sub1 d-none">
+                            <li><a href="{{url_for('create_customer')}}"><i class="bx bx-plus"></i> New Customer</a>
+                            </li>
+                            <li><a href="{{url_for('search_customer')}}"><i class="bx bx-search"></i> Search
+                                    Customer</a></li>
+                            <li><a href="{{url_for('update_customer')}}"><i class=" bx bx-arrow-from-bottom"></i> Update
+                                    Customer</a></li>
+                            <li><a href="{{url_for('delete_customer')}}"><i class="bx bx-trash"></i> Delete Customer</a>
+                            </li>
+                        </ul>
+                        {%else %}
+                        <ul class="sub1 d-none">
+                            <li onclick="alert('Please LogIn as Customer-Account-Executive')"><a><i
+                                        class="bx bx-plus"></i> New Customer</a>
+                            </li>
+                            <li onclick="alert('Please LogIn as Customer-Account-Executive')"><a><i
+                                        class="bx bx-search"></i> Search
+                                    Customer</a></li>
+                            <li onclick="alert('Please LogIn as Customer-Account-Executive')"><a><i
+                                        class=" bx bx-arrow-from-bottom"></i> Update
+                                    Customer</a></li>
+                            <li onclick="alert('Please LogIn as Customer-Account-Executive')"><a><i
+                                        class="bx bx-trash"></i> Delete Customer</a>
+                            </li>
+                        </ul>
+                        {% endif %}
+                    </li>
+                    <li class="two"><a><i class="bx bx-file-blank"></i> <span>Account Management</span><span><i
+                                    class="bx bx-caret-down-square pt-1 pl-1" style="font-size:15px;"></i></span></a>
+                        {% if session['username']=='customer-account-executive' %}
+                        <ul class="sub2 d-none">
+                            <li><a href="{{url_for('create_account')}}"><i class="bx bx-door-open"></i>Create
+                                    Account</a></li>
+                            <li><a href="{{url_for('account_search')}}"><i class="bx bx-search-alt"></i> Search
+                                    Account</a></li>
+                            <li><a href="{{url_for('delete_account')}}"><i class="bx bx-trash-alt"></i> Delete
+                                    Account</a></li>
+                        </ul>
+                        {%else%}
+                        <ul class="sub2 d-none">
+                            <li onclick="alert('Please LogIn as Customer-Account-Executive')"><a><i
+                                        class="bx bx-door-open"></i>Create
+                                    Account</a></li>
+                            <li onclick="alert('Please LogIn as Customer-Account-Executive')"><a><i
+                                        class="bx bx-search-alt"></i> Search
+                                    Account</a></li>
+                            <li onclick="alert('Please LogIn as Customer-Account-Executive')"><a><i
+                                        class="bx bx-trash-alt"></i> Delete
+                                    Account</a></li>
+                        </ul>
+                        {%endif%}
+                    </li>
+                    <li class="three"><a><i class="bx bx-book-content"></i> Status Details<span><i
+                                    class="bx bx-caret-down-square pt-1 pl-1" style="font-size:15px;"></i></span></a>
+                        <ul class="sub3 d-none">
+                            {% if session['username']=='customer-account-executive' %}
+                            <li><a href="{{url_for('account_status')}}"><i class="bx bx-trim"></i> Account Status</a>
+                            </li>
+                            <li><a href="{{url_for('customer_status')}}"><i class="bx bx-meteor"></i> Customer
+                                    Status</a></li>
+                            {%else%}
+                            <li><a href="{{url_for('account_status')}}"><i class="bx bx-trim"></i> Account Status</a>
+                            </li>
+                            <li><a onclick="alert('Please LogIn as Customer-Account-Executive')"><i
+                                        class="bx bx-meteor"></i> Customer
+                                    Status</a></li>
+                            {%endif%}
+                        </ul>
+                    </li>
+                    <li class="four"><a><i class="bx bx-server"></i> Account Operations<span><i
+                                    class="bx bx-caret-down-square pt-1 pl-1" style="font-size:15px;"></i></span></a>
+                        <ul class="sub4 d-none">
+                            {% if session['username']=='customer-account-executive' %}
+                            <li><a onclick="alert('Please LogIn as Cashier/Teller')"><i class="bx bx-money"></i> Deposit
+                                    Money</a>
+                            </li>
+                            <li><a onclick="alert('Please LogIn as Cashier/Teller')"><i class="bx bx-transfer"></i>
+                                    Transfer
+                                    Money</a></li>
+                            <li><a onclick="alert('Please LogIn as Cashier/Teller')"><i class="bx bx-window-alt"></i>
+                                    Withdraw
+                                    Money</a></li>
+                            <li><a onclick="alert('Please LogIn as Cashier/Teller')"><i class="bx bx-windows"></i> Print
+                                    Statements</a></li>
+                            {%else%}
+                            <li><a href="{{url_for('deposit_money')}}"><i class="bx bx-money"></i> Deposit Money</a>
+                            </li>
+                            <li><a href="{{url_for('transfer_money')}}"><i class="bx bx-transfer"></i> Transfer
+                                    Money</a></li>
+                            <li><a href="{{url_for('withdraw_money')}}"><i class="bx bx-window-alt"></i> Withdraw
+                                    Money</a></li>
+                            <li><a href="{{url_for('print_statements')}}"><i class="bx bx-windows"></i> Print
+                                    Statements</a></li>
+                            {%endif%}
+                        </ul>
+                    </li>
+                    <li><a href="{{url_for('logout')}}"><i class="bx bx-share"></i> Logout</a></li>
+                </ul>
+            </nav><!-- .nav-menu -->
+            <button type="button" class="mobile-nav-toggle d-xl-none"><i class="bx bx-x"></i></button>
+        </div>
+    </header><!-- End Header -->
+
+    <main id="main">
+        <div class="container-fluid bg-dark py-2 pr-5">
+            <p class="text-right pr-2 pt-2 font-weight-bold text-white"><i class="bx bx-donate-heart"></i> Yo Bank</p>
+        </div>
+        {% block content %}
+
+        {% endblock %}
+    </main><!-- End #main -->
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/main.js"></script>
+
+</body>
+
+</html>
+{%endif%}

@@ -1,0 +1,64 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container">
+    <div class="col-md-6 mx-auto mt-4  bt">
+        <h4 class="text-center font-weight-bold pb-3"> Customer Search</h4>
+        <form action="" method="POST">
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="id" placeholder="Enter SSN ID" />
+                </div>
+                <p class="text-center">OR</p>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="aid" placeholder="Enter Account ID" />
+                </div>
+                <button type="submit" class="btn btn-info btn-block btnx mb-2">
+                    Search
+                </button>
+                {% for message in get_flashed_messages() %}
+                {%if 'Yes' in message%}
+                <p class="text-info text-center pt-3">Customer Found</p>
+                {%else%}
+                <p class="text-danger text-center pt-3">{{message}}</p>
+                {%endif%}
+                {% endfor %}
+            </div>
+        </form>
+        {% if data %}
+        <table class="table-striped table">
+            <tr>
+                <td><b>SSN ID :</b></td>
+                <td>{{data[0][0]['ssn_id']}}</td>
+            </tr>
+            <tr>
+                <td><b> Name :</b></td>
+                <td>{{data[0][0]['name']}}</td>
+            </tr>
+            <tr>
+                <td><b>Age :</b></td>
+                <td>{{data[0][0]['age']}}</td>
+            </tr>
+            <tr>
+                <td><b>Address :</b></td>
+                <td>{{data[0][0]['address']}}</td>
+            </tr>
+            <tr>
+                <td><b>State :</b></td>
+                <td>{{data[0][0]['state']}}</td>
+            </tr>
+            <tr>
+                <td><b>City :</b></td>
+                <td>{{data[0][0]['city']}}</td>
+            </tr>
+        </table>
+        {% endif%}
+    </div>
+</div>
+
+{% endblock %}

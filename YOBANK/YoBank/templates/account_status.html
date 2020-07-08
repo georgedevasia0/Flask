@@ -1,0 +1,44 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container-fluid">
+    <div class="col-md-12 mx-auto mt-4 bt">
+        <h4 class="text-center font-weight-bold pb-3">Account Status</h4>
+
+        <table class="table">
+            <thead>
+                <tr class="border">
+                    <th class="border text-info text-center">Customer ID</th>
+                    <th class="border text-info text-center">Account ID</th>
+                    <th class="border text-info text-center">Account Type</th>
+                    <th class="border text-info text-center">Account Status</th>
+                    <th class="border text-info text-center">Message</th>
+                    <th class="border text-info text-center">Last Updated</th>
+                    <th class="border text-info text-center">Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if data %}
+                {% for i in data %}
+                <tr class="border">
+                    <td class="border text-center">{{i['c_id']}}</td>
+                    <td class="border text-center">{{i['acc_id']}}</td>
+                    <td class="border text-center">{{i['acc_type']}}</td>
+                    <td class="border text-center text-center">{{i['status']}}</td>
+                    <td class="border text-center" id="x">{{i['message']}}</td>
+                    <td class="border text-center text-center">{{i['last_updated']}}</td>
+                    <td class="border text-center"><a href="{{url_for('account_status')}}" type=submit
+                            id="{{i['acc_id']}}" class="btn btn-info" onclick="refresher()">Refresh</a></td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class=" mx-auto btn btn-secondary">
+            <a href="{{url_for('account_status')}}" class="text-white">Refresh the List</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

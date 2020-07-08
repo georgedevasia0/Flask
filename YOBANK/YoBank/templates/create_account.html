@@ -1,0 +1,48 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container">
+    <div class="col-md-6 mx-auto mt-4  bt">
+        <h4 class="text-center font-weight-bold pb-3">Create Account</h4>
+        <form action="create_account" method="POST">
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-server"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="id" placeholder="Customer Id" required />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-credit-card-front"></i></span>
+                    </div>
+                    <select name="account" id="account" class="form-control" required>
+                        <option value="" selected>Select Account Type</option>
+                        <option value="savings">Savings account</option>
+                        <option value="deposit">Deposit Account</option>
+                        <option value="holdings">Holdings Account</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-joystick-button"></i></span>
+                    </div>
+                    <input type="number" class="form-control" name="amount" min="1" placeholder="Deposit Amount"
+                        required />
+                </div>
+                <p class="text-danger">*All Fields are Mandatory</p>
+                <button type="submit" class="btn btn-info btn-block btnx">
+                    Submit
+                </button>
+                {% for message in get_flashed_messages() %}
+                {%if 'New' in message%}
+                <p class="text-info text-center pt-3">{{message}}</p>
+                {%else%}
+                <p class="text-danger text-center pt-3">{{message}}</p>
+                {%endif%}
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container">
+    <div class="col-md-6 mx-auto mt-4 bt">
+        <h4 class="text-center font-weight-bold pb-3">Update Customer</h4>
+        {% if not cust %}
+        <form action="srch_customer" method="POST">
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="id" placeholder="Enter Customer SSN ID" />
+                    <div class="input-group-append">
+                        <button type="submit" class="input-group-text">Search</button>
+                    </div>
+                </div>
+            </div>
+            {% for message in get_flashed_messages() %}
+            {%if 'Succesfully' in message%}
+            <p class="text-info text-center pt-3">{{message}}</p>
+            {%else%}
+            <p class="text-danger text-center pt-3">{{message}}</p>
+            {%endif%}
+            {% endfor %}
+        </form>
+        {%else%}
+        <form action="update_customer" method="POST">
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Customer SSN ID :</span>
+                    </div>
+                    <input type="text" class="form-control" name="id" value="{{cust[0][0]['ssn_id']}}"
+                        placeholder="{{cust[0][0]['ssn_id']}}" readonly />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Old Customer Name :</span>
+                    </div>
+                    <input type="text" class="form-control" name="oldname" placeholder="{{cust[0][0]['name']}}"
+                        readonly />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="newname" placeholder="New Customer Name" required />
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Old Age : </span>
+                    </div>
+                    <input type="text" class="form-control" name="oldage" placeholder="{{cust[0][0]['age']}}"
+                        readonly />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-joystick-button"></i></span>
+                    </div>
+                    <input type="number" class="form-control" name="age" min="10" max="90" placeholder="Enter New Age"
+                        required />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Old Address : </i></span>
+                    </div>
+                    <input type="text" class="form-control" name="oldaddress" placeholder="{{cust[0][0]['address']}}"
+                        readonly />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-current-location"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="address" placeholder="Enter New Address" required />
+                </div>
+                <button type="submit" class="btn btn-info btn-block btnx">
+                    Update
+                </button>
+            </div>
+        </form>
+        {%endif%}
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container-fluid">
+    <div class="col-md-12 mx-auto mt-4 bt">
+        <h4 class="text-center font-weight-bold pb-3">Account Statement</h4>
+        <table class="table">
+            <thead>
+                <tr class="border">
+                    <th class="border text-info text-center">Transaction ID</th>
+                    <th class="border text-info text-center">Description</th>
+                    <th class="border text-info text-center">Date</th>
+                    <th class="border text-info text-center">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%if data %}
+                {% for i in data%}
+                <tr class="border">
+                    <td class="border text-center">{{i['id']}}</td>
+                    <td class="border text-center">{{i['description']}}</td>
+                    <td class="border text-center">{{i['date']}}</td>
+                    <td class="border text-center text-center">{{i['amount']}}</td>
+                </tr>
+                {%endfor%}
+                {%endif%}
+            </tbody>
+        </table>
+    </div>
+    <div class="row mt-4">
+        <div class="col-lg-6 pb-2">
+            <button type="reset" class="btn btn-secondary btn-block btnx">
+                Download as PDF File
+            </button>
+        </div>
+        <div class="col-lg-6">
+            <button type="submit" class="btn btn-secondary btn-block btnx">
+                Downloas as Excell File
+            </button>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

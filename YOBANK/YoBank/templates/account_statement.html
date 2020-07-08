@@ -1,0 +1,60 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container">
+    <div class="col-md-6 mx-auto mt-4  bt">
+        <h4 class="text-center font-weight-bold pb-3">Account Statement</h4>
+        <form action="create_cust" method="POST">
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-server"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="id" placeholder="Customer ID" required />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><input type="radio" name="rad"></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Last Number of Transcations" />
+                </div>
+                <p class="text-center">OR</p>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><input type="radio" name="rad"></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Start-End Dates" />
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-dollar"></i></span>
+                    </div>
+                    <input type="number" name="trans" class="form-control" min="1"
+                        placeholder="Enter No of Transactions" required />
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-calendar"></i></span>
+                    </div>
+                    <input type="date" name="start" class="form-control" placeholder="Enter the Start Date" required />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-calendar"></i></span>
+                    </div>
+                    <input type="date" name="end" class="form-control" min="1" placeholder="Enter the End Date"
+                        required />
+                </div>
+
+
+                <button type="submit" class="btn btn-info btn-block btnx">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

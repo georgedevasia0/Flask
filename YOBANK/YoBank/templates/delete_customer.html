@@ -1,0 +1,85 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container">
+    <div class="col-md-6 mx-auto mt-4  bt">
+        <h4 class="text-center font-weight-bold pb-3">Delete Customer</h4>
+        <form action="search_cust" method="POST">
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="cid" placeholder="Enter Customer SSN ID" />
+                    <div class="input-group-append">
+                        <button type="submit" class="input-group-text">Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form action="delete_customer" method="POST">
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><b>Customer ID : </b></i></span>
+                    </div>
+                    {% if cust %}
+                    <input type="text" class="form-control" name="id" value="{{cust[0][0]['ssn_id']}}"
+                        placeholder="{{cust[0][0]['ssn_id']}}" readonly />
+                    {%else%}
+                    <input type="text" class="form-control" name="id" value='' placeholder="" readonly />
+                    {%endif%}
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><b>Customer Name : </b></span>
+                    </div>
+                    {% if cust %}
+                    <input type="text" class="form-control" placeholder="{{cust[0][0]['name']}}" readonly />
+                    {%else%}
+                    <input type="text" class="form-control" placeholder="" readonly />
+                    {%endif%}
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><b>Age : </b></span>
+                    </div>
+                    {% if cust %}
+                    <input type="text" class="form-control" placeholder="{{cust[0][0]['age']}}" readonly />
+                    {%else%}
+                    <input type="text" class="form-control" placeholder="" readonly />
+                    {%endif%}
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><b>Address : </b></span>
+                    </div>
+                    {% if cust %}
+                    <input type="text" class="form-control" placeholder="{{cust[0][0]['address']}}" readonly />
+                    {%else%}
+                    <input type="text" class="form-control" placeholder="" readonly />
+                    {%endif%}
+                </div>
+                <div class="row mt-4">
+                    <div class="col-lg-6 pb-2">
+                        <button type="submit" class="btn btn-danger btn-block btnx">
+                            Confirm Delete
+                        </button>
+                    </div>
+                    <div class="col-lg-6">
+                        <a href="{{url_for('search_cust1')}}" class="btn btn-info btn-block btnx">
+                            Cancel
+                        </a>
+                    </div>
+                </div>
+                {% for message in get_flashed_messages() %}
+                <p class="text-danger text-center pt-2">{{message}}</p>
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Login</title>
+    <link href="static/bootstrap.min.css" rel="stylesheet">
+    <link href="static/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="static/style.css" rel="stylesheet">
+</head>
+
+<body id="greyish">
+    <div class="container-fluid bg-dark py-2 pr-5">
+        <p class="text-right pr-2 pt-3 font-weight-bold text-white">Yo Bank</p>
+    </div>
+    <div class="container pt-5">
+        <div class="col-md-6 border mx-auto mt-5 p-5 bt">
+            <h4 class="text-center font-weight-bold pb-3">Login</h4>
+            <form action="" method="POST">
+                <div class="form-group">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username" placeholder="User ID" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="Password" required />
+                    </div>
+                    <button type="submit" class="btn btn-info btn-block btnx">
+                        Login
+                    </button>
+            </form>
+            {% if error %}
+            <p class="text-danger text-center pt-3">{{error}}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="container-fluid cx mt-2 pb-5">
+    {% if get_flashed_messages() %}
+    {% for message in get_flashed_messages() %}
+    {%if 'Succesfully' in message%}
+    <div class="container-fluid bg-success py-1">
+        <p class="text-white text-center pt-2">{{message}}</p>
+    </div>
+    {%else%}
+    <div class="container-fluid bg-danger py-1">
+        <p class="text-white text-center pt-2">{{message}}</p>
+    </div>
+    {%endif%}
+    {% endfor %}
+
+    {%endif%}
+    <div class="container pt-2" style="min-height: 340px;">
+        <div class="col-md-6 mx-auto mt-4 bt">
+            <h4 class="text-center font-weight-bold pb-3">Pharmacy</h4>
+            <form action="issue_med" method="POST">
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="bx bx-search"></i></span>
+                        </div>
+                        <input type="text" class="form-control" name="id" placeholder="Enter Patient ID" />
+                        <div class="input-group-append">
+                            <button type="submit" class="input-group-text">Get</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {%if data %}
+    <div class="container-fluid" style="margin-top: -150px;">
+        <div class="col-md-12 mx-auto bt">
+            <table class="table table-striped">
+                <thead>
+                    <tr class="border table-dark">
+                        <th class="border text-primary">Patient ID</th>
+                        <th class="border text-primary">Name</th>
+                        <th class="border text-primary">Age</th>
+                        <th class="border text-primary text-center">Address</th>
+                        <th class="border text-primary">DOJ</th>
+                        <th class="border text-primary">Type of Room</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in data %}
+                    <tr class="border">
+                        <td class="border">{{i[0]['id']}}</td>
+                        <td class="border">{{i[0]['name']}}</td>
+                        <td class="border">{{i[0]['age']}}</td>
+                        <td class="border text-center">{{i[0]['address']}}</td>
+                        <td class="border">{{i[0]['adm_date']}}</td>
+                        <td class="border">{{i[0]['bed_type']}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="container-fluid pt-2">
+        <div class="col-md-12 mx-auto mt-4 bt">
+            <h5 class="text-center font-weight-bold pb-3">Issued Medicines</h5>
+            <table class="table table-striped">
+                <thead>
+                    <tr class="border table-dark">
+                        <th class="border text-primary">Medicine</th>
+                        <th class="border text-primary">Quantity</th>
+                        <th class="border text-primary">Rate</th>
+                        <th class="border text-primary text-center">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if med %}
+                    {% for i in med %}
+                    <tr class="border">
+                        <td class="border">{{i[0]['m_name']}}</td>
+                        <td class="border">{{i[1]}}</td>
+                        <td class="border">{{i[0]['rate']}}</td>
+                        <td class="border text-center">{{i[0]['rate']*i[1]}}</td>
+                    </tr>
+                    {% endfor %}
+                    {%else %}
+                    <tr class="border">
+                        <td class="border text-center text-danger" colspan="4">No Medicines Issued</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <form action="add_medicine" method="POST">
+        <div class="container pt-4">
+            <h5 class="text-center font-weight-bold pb-3">Issue Medicines</h5>
+            <div class="row">
+                <div class="col-lg-3 input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-user"></i></span>
+                    </div>
+                    <select name="account" id="account" onchange="abc();" class="form-control" required>
+                        <option value="" selected>Medicine</option>
+                        {% for i in med %}
+                        <option value="{{i[0]['m_name']}}">{{i[0]['m_name']}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+                <div class="col-lg-3 input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-plus"></i></span>
+                    </div>
+                    <input type="number" id="qua" name="quantity" max="" min="1" placeholder="Quantity">
+                </div>
+                <div class="col-lg-2 input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-joystick-button"></i></span>
+                    </div>
+                    <input type="number" class="form-control" id="rate" name="rate" min="1" placeholder="Rate"
+                        readonly />
+                </div>
+                <div class="col-lg-2 input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-joystick-button"></i></span>
+                    </div>
+                    <input type="number" class="form-control" name="age" min="1" placeholder="Amount" readonly />
+                </div>
+                <div class="col-lg-2 input-group mb-3">
+                    <button type="submit" class="btn btn-info btn-block btnx">
+                        Add
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    {%endif%}
+</div>
+{% endblock %}

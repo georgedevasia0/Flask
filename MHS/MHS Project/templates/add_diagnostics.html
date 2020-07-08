@@ -1,0 +1,130 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container-fluid cx mt-3 pb-5">
+    {% if get_flashed_messages() %}
+    {% for message in get_flashed_messages() %}
+    {%if 'Succesfully' in message%}
+    <div class="container-fluid bg-success py-1">
+        <p class="text-white text-center pt-2">{{message}}</p>
+    </div>
+    {%else%}
+    <div class="container-fluid bg-danger py-1">
+        <p class="text-white text-center pt-2">{{message}}</p>
+    </div>
+    {%endif%}
+    {% endfor %}
+
+    {%endif%}
+    <div class="container pt-3" style="min-height: 340px;">
+        <div class="col-md-6 mx-auto mt-4 bt">
+            <h4 class="text-center font-weight-bold pb-3">Diagnostics</h4>
+            <form action="srch_patient_dia" method="POST">
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="bx bx-search"></i></span>
+                        </div>
+                        <input type="text" class="form-control" name="id" placeholder="Enter Patient ID" />
+                        <div class="input-group-append">
+                            <button type="submit" class="input-group-text">Get</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {%if data %}
+    <div class="container-fluid" style="margin-top: -150px;">
+        <div class="container-fluid pt-2">
+            <div class="col-md-12 mx-auto mt-4 bt">
+                <table class="table table-striped">
+                    <thead>
+                        <tr class="border table-dark">
+                            <th class="border text-primary">Patient ID</th>
+                            <th class="border text-primary">Name</th>
+                            <th class="border text-primary">Age</th>
+                            <th class="border text-primary text-center">Address</th>
+                            <th class="border text-primary">DOJ</th>
+                            <th class="border text-primary">Type of Room</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for i in data %}
+                        <tr class="border">
+                            <td class="border">{{i[0]['id']}}</td>
+                            <td class="border">{{i[0]['name']}}</td>
+                            <td class="border">{{i[0]['age']}}</td>
+                            <td class="border text-center">{{i[0]['address']}}</td>
+                            <td class="border">{{i[0]['adm_date']}}</td>
+                            <td class="border">{{i[0]['bed_type']}}</td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="container pt-2">
+            <div class="col-md-6 mx-auto mt-4 bt">
+                <h5 class="text-center font-weight-bold pb-3">Diagnostics Conducted</h5>
+                <table class="table table-striped">
+                    <thead>
+                        <tr class="border table-dark">
+                            <th class="border text-primary">Name of Test</th>
+                            <th class="border text-primary">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% if med %}
+                        {% for i in med %}
+                        <tr class="border">
+                            <td class="border">{{i['diagnosis']}}</td>
+                            <td class="border">{{i['amount']}}</td>
+                        </tr>
+                        {% endfor %}
+                        {%else %}
+                        <tr class="border">
+                            <td class="border text-center text-danger" colspan="4">No Diagnostics Done</td>
+                        </tr>
+                        {% endif %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="container mt-4 col-lg-6 pt-2">
+            <h5 class="text-center font-weight-bold pb-3">Add Diagnostics</h5>
+            <div class="row">
+                <div class="col-lg-4 input-group mb-3 mx-auto">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-user"></i></span>
+                    </div>
+                    <select name="account" id="account" class="form-control" required>
+                        <option value="" selected>Name of Test</option>
+                        <option value="savings">Savings account</option>
+                        <option value="deposit">Deposit Account</option>
+                        <option value="holdings">Holdings Account</option>
+                    </select>
+                </div>
+                <div class="col-lg-4 input-group mb-3 mx-auto">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-joystick-button"></i></span>
+                    </div>
+                    <input type="number" class="form-control" name="age" min="1" placeholder="Amount" readonly />
+                </div>
+                <div class="col-lg-3 input-group mb-3 mx-auto">
+                    <button type="submit" class="btn btn-info btn-block btnx">
+                        Add
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {%endif%}
+</div>
+{% endblock %}

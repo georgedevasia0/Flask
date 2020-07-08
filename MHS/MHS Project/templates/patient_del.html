@@ -1,0 +1,92 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container-fluid mt-2 cx pb-5">
+    <div class="col-md-6 mx-auto pt-4 bt">
+        <h4 class="text-center font-weight-bold pb-3">Delete Patient</h4>
+        <form action="del_src_patient" style="min-height: 250px;" method="POST">
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="id" placeholder="Enter Patient ID" />
+                    <div class="input-group-append">
+                        <button type="submit" class="input-group-text">Get</button>
+                    </div>
+                </div>
+            </div>
+            {% for message in get_flashed_messages() %}
+            {%if 'Succesfully' in message%}
+            <p class="text-info text-center pt-3">{{message}}</p>
+            {%else%}
+            <p class="text-danger text-center pt-3">{{message}}</p>
+            {%endif%}
+            {% endfor %}
+        </form>
+        {%if dta%}
+        <form style="margin-top: -100px;" action="delete_pat" method="POST">
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Patient ID :</span>
+                    </div>
+                    <input type="text" class="form-control" name="id" value="{{dta[0][0]['id']}}"
+                        placeholder="{{dta[0][0]['id']}}" readonly />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Patient Name :</span>
+                    </div>
+                    <input type="text" class="form-control" name="name" placeholder="{{dta[0][0]['name']}}" readonly />
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Age : </span>
+                    </div>
+                    <input type="text" class="form-control" name="age" placeholder="{{dta[0][0]['age']}}" readonly />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Date of Admission : </span>
+                    </div>
+                    <input type="text" class="form-control" name="date" placeholder="{{dta[0][0]['adm_date']}}"
+                        readonly />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Type of Bed :</span>
+                    </div>
+                    <input type="text" class="form-control" name="bed" placeholder="{{dta[0][0]['bed_type']}}"
+                        readonly />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-current-location"></i></span>
+                    </div>
+                    <textarea class="form-control" name="address" placeholder=" {{dta[0][0]['address']}}"
+                        readonly></textarea>
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">State :</span>
+                    </div>
+                    <input type="text" class="form-control" name="state" placeholder="{{dta[0][0]['state']}}"
+                        readonly />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">City :</span>
+                    </div>
+                    <input type="text" class="form-control" name="city" placeholder="{{dta[0][0]['city']}}" readonly />
+                </div>
+                <button type="submit" class="btn btn-info btn-block btnx">
+                    Delete
+                </button>
+            </div>
+        </form>
+        {%endif%}
+    </div>
+</div>
+{% endblock %}

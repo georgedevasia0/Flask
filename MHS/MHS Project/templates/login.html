@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Login</title>
+    <link href="static/bootstrap.min..css" rel="stylesheet">
+    <link href="static/boxicons/css/boxicons.min.css" rel="stylesheet">
+</head>
+
+<body id="greyish">
+    <div class="container-fluid bg-primary py-2 pr-5">
+        <p class="text-right pr-2 pt-3 font-weight-bold text-white"><span style="font-size:20px; padding-top:2px;"><i
+                    class=" bx
+                bx-first-aid"></i></span><span class="pt-5"> MHS</span></p>
+    </div>
+    <div class="container pt-5">
+        <div class="col-md-6 border mx-auto mt-5 p-5 bt" style="border-radius: 10px;">
+            <h4 class="text-center font-weight-bold pb-3">Login</h4>
+            <form action="" method="POST">
+                <div class="form-group">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username" placeholder="Username" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="Password" required />
+                    </div>
+                    <button type="submit" class="btn btn-info btn-block btnx">
+                        Login
+                    </button>
+            </form>
+            {% if error %}
+            <p class="text-danger text-center pt-3">{{error}}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

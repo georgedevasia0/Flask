@@ -1,0 +1,83 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container-fluid cx mt-2 pb-5">
+    <div class="col-md-6 mx-auto pt-4 bt">
+        <h4 class="text-center font-weight-bold pb-3">Search Patient</h4>
+        <form action="srch_patient1" method="POST" style="min-height: 250px;">
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="id" placeholder="Enter Patient ID" />
+                    <div class="input-group-append">
+                        <button type="submit" class="input-group-text">Get</button>
+                    </div>
+                </div>
+            </div>
+            {% for message in get_flashed_messages() %}
+            {%if 'Succesfully' in message%}
+            <p class="text-info text-center pt-3">{{message}}</p>
+            {%else%}
+            <p class="text-danger text-center pt-3">{{message}}</p>
+            {%endif%}
+            {% endfor %}
+        </form>
+        {%if data %}
+        <div class="form-group" style="margin-top: -100px;">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Patient SSN ID :</span>
+                </div>
+                <input type="text" class="form-control" name="id" value="{{data[0][0]['id']}}"
+                    placeholder="{{data[0][0]['id']}}" readonly />
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Patient Name :</span>
+                </div>
+                <input type="text" class="form-control" name="name" placeholder="{{data[0][0]['name']}}" />
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Age : </span>
+                </div>
+                <input type="text" class="form-control" name="oldage" placeholder="{{data[0][0]['age']}}" />
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Date of Admission : </span>
+                </div>
+                <input type="text" class="form-control" name="date" placeholder="{{data[0][0]['adm_date']}}" />
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Type of Bed :</span>
+                </div>
+                <input type="text" class="form-control" name="bed" placeholder="{{data[0][0]['bed_type']}}" />
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="bx bx-current-location"></i></span>
+                </div>
+                <textarea class="form-control" name="address" placeholder="{{data[0][0]['address']}}"></textarea>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">State :</span>
+                </div>
+                <input type="text" class="form-control" name="state" placeholder="{{data[0][0]['state']}}" />
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">City :</span>
+                </div>
+                <input type="text" class="form-control" name="city" placeholder="{{data[0][0]['city']}}" />
+            </div>
+            {%endif%}
+        </div>
+    </div>
+</div>
+{% endblock %}

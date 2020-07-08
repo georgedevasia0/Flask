@@ -1,0 +1,144 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container-fluid cx mt-2 pb-5">
+    <div class="col-md-6 mx-auto pt-4 bt">
+        <h4 class="text-center font-weight-bold pb-3">Update Patient</h4>
+        <div class="container" style="min-height: 250px;">
+            <form action="src_patient" method="POST">
+                <div class="form-group">
+                    <div class="input-group mb-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="bx bx-search"></i></span>
+                        </div>
+                        <input type="text" class="form-control" name="id" placeholder="Enter Patient ID" required />
+                        <div class="input-group-append">
+                            <button type="submit" class="input-group-text">Search</button>
+                        </div>
+                    </div>
+                </div>
+                {% for message in get_flashed_messages() %}
+                {%if 'Succesfully' in message%}
+                <p class="text-info text-center pt-3">{{message}}</p>
+                {%else%}
+                <p class="text-danger text-center pt-3">{{message}}</p>
+                {%endif%}
+                {% endfor %}
+            </form>
+        </div>
+        {%if dta%}
+        <form style="margin-top: -100px;" action="update_pat" method="POST">
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Patient ID :</span>
+                    </div>
+                    <input type="text" class="form-control" name="id" value="{{dta[0][0]['id']}}"
+                        placeholder="{{dta[0][0]['id']}}" readonly />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Old Patient Name :</span>
+                    </div>
+                    <input type="text" class="form-control" value="{{dta[0][0]['name']}}" name="oldname"
+                        placeholder="{{dta[0][0]['name']}}" readonly />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="newname" placeholder="New Patient Name" />
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Old Age : </span>
+                    </div>
+                    <input type="text" class="form-control" name="oldage" value="{{dta[0][0]['age']}}"
+                        placeholder="{{dta[0][0]['age']}}" readonly />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-joystick-button"></i></span>
+                    </div>
+                    <input type="number" class="form-control" name="age" min="1" max="100"
+                        placeholder="Enter New Age" />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Current Type of Bed :</span>
+                    </div>
+                    <input type="text" class="form-control" value="{{dta[0][0]['bed_type']}}" name="oldbed"
+                        placeholder="{{dta[0][0]['bed_type']}}" readonly />
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-credit-card-front"></i></span>
+                    </div>
+                    <select name="bed" id="bed" class="form-control">
+                        <option value="" selected>Type of Bed</option>
+                        <option value="general">General Ward</option>
+                        <option value="semi-sharing">Semi Sharing</option>
+                        <option value="single">Single</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Old Address : </i></span>
+                    </div>
+                    <input type="text" class="form-control" value="{{dta[0][0]['address']}}" name="oldaddress"
+                        placeholder="{{dta[0][0]['address']}}" readonly />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-current-location"></i></span>
+                    </div>
+                    <textarea class="form-control" name="address" placeholder="Enter New Address"></textarea>
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Old State :</span>
+                    </div>
+                    <input type="text" class="form-control" value="{{dta[0][0]['state']}}" name="oldstate"
+                        placeholder="{{dta[0][0]['state']}}" readonly />
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-credit-card-front"></i></span>
+                    </div>
+                    <select name="state" id="state" class="form-control">
+                        <option value="" selected>state</option>
+                        <option value="kerala">Kerala</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Tamilnadu">Tamilnadu</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Old City :</span>
+                    </div>
+                    <input type="text" class="form-control" value="{{dta[0][0]['city']}}" name="oldcity"
+                        placeholder="{{dta[0][0]['city']}}" readonly />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-credit-card-front"></i></span>
+                    </div>
+                    <select name="city" id="city" class="form-control">
+                        <option value="" selected>city</option>
+                        <option value="Kannur">Kannur</option>
+                        <option value="Mangalore">Mangalore</option>
+                        <option value="Kozhikode">Kozhikode</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-info btn-block btnx">
+                    Update
+                </button>
+            </div>
+        </form>
+        {%endif%}
+    </div>
+</div>
+{% endblock %}

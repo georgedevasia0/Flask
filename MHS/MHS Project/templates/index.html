@@ -1,0 +1,88 @@
+{% if session['username'] %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>HMS</title>
+    <link href="static/bootstrap.min..css" rel="stylesheet">
+    <link href="static/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="static/style.css" rel="stylesheet">
+</head>
+
+<body id="greyish">
+    <div class="container-fluid bg-primary pb-4">
+        <ul class="p-3">
+            <li class="pl-2 text-white font-weight-bold" style="font-size: 20px;">We-Care HMS <i class=" bx
+            bx-first-aid"></i></li>
+            <li class="btn btn1 right mr-2 text-white"><a href="{{url_for('logout')}}" class="text-white"><i
+                        class="bx bx-share"></i>
+                    Logout</a></li>
+        </ul>
+    </div>
+    <div class="container mt-5">
+        <div class="row m-auto">
+            <div class="col-lg-4 dropdown pb-3">
+                <button class="btn col-lg-12 btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Patient
+                </button>
+                <div class="dropdown-menu  col-lg-11" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item bg-light border-bottom" href="{{url_for('index')}}"><b><i
+                                class="bx bx-plus"></i> Create
+                            Patient</b></a>
+                    <a class="dropdown-item bg-light border-bottom" href="{{url_for('update_pat')}}"><b><i
+                                class="bx bx-server"></i> Update
+                            Patient</b></a>
+                    <a class="dropdown-item bg-light" href="{{url_for('delete_pat')}}"><b><i class="bx bx-trash"></i>
+                            Delete Patient</b></a>
+                </div>
+            </div>
+            <div class="col-lg-4 dropdown">
+                <button class="btn col-lg-12 btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Pharmacy
+                </button>
+                <div class="dropdown-menu  col-lg-11" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="{{url_for('view_pat')}}">View Patients</a>
+                    <a class="dropdown-item" href="{{url_for('search_pat')}}">Search Patient</a>
+                    <a class="dropdown-item" href="{{url_for('issue_med')}}">Issue Medicines</a>
+                    <a class="dropdown-item" href="{{url_for('billing')}}">Billing</a>
+                </div>
+            </div>
+            <div class="col-lg-4 dropdown">
+                <button class="btn col-lg-12 btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Diagnostics
+                </button>
+                <div class="dropdown-menu  col-lg-11" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="{{url_for('add_diag')}}">Add Diagnostics</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block content %}
+
+    {% endblock %}
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="copyright-box">
+                        <p class="copyright">&copy; Copyright <strong>MHS Case Study</strong>. All Rights Reserved</p>
+                        <div class="credits">Designed by us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/bootstrap.bundle.js"></script>
+    <script src="static/js/script.js"></script>
+</body>
+
+</html>
+{%endif%}

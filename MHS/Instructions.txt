@@ -1,0 +1,5 @@
+
+1. Import sql file
+2. Install needed modules
+
+

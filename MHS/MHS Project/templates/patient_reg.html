@@ -1,0 +1,100 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="container-fluid cx pb-5 pt-3 mt-3">
+    {% if get_flashed_messages() %}
+    <div class="container-fluid bg-success py-2">
+        {% for message in get_flashed_messages() %}
+        <p class="text-white text-center pt-2">{{message}}</p>
+        {% endfor %}
+    </div>
+    {%endif%}
+    <div class="col-md-6 mx-auto mt-4  bt">
+        <h4 class="text-center font-weight-bold pb-3">Patient Registration</h4>
+        <form action="index" method="POST">
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-server"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="id" placeholder="Patient SSN Id" required />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-server"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="name" placeholder="Patient Name" required />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-joystick-button"></i></span>
+                    </div>
+                    <input type="number" class="form-control" name="age" min="1" placeholder="Patient Age" required />
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-joystick-button"></i></span>
+                    </div>
+                    <input type="date" class="form-control" name="date" min="1" placeholder="Date of Admission"
+                        required />
+                    <div class="input-group-append">
+                        <span class="input-group-text">Date of Admission</span>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-credit-card-front"></i></span>
+                    </div>
+                    <select name="bed" id="bed" class="form-control" required>
+                        <option value="" selected>Type of Bed</option>
+                        <option value="general">General Ward</option>
+                        <option value="semi-sharing">Semi Sharing</option>
+                        <option value="single">Single</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-joystick-button"></i></span>
+                    </div>
+                    <textarea rows="4" class="form-control" name="address" placeholder="Address" required></textarea>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-credit-card-front"></i></span>
+                    </div>
+                    <select name="state" id="state" class="form-control" required>
+                        <option value="" selected>state</option>
+                        <option value="kerala">Kerala</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="tamilnadu">Tamilnadu</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bx bx-credit-card-front"></i></span>
+                    </div>
+                    <select name="city" id="city" class="form-control" required>
+                        <option value="" selected>city</option>
+                        <option value="kannur">Kannur</option>
+                        <option value="mangalore">Mangalore</option>
+                        <option value="kozhikode">Kozhikode</option>
+                    </select>
+                </div>
+                <p class="text-danger">*All Fields are Mandatory</p>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <a href="{{url_for('index')}}" type="reset" class="btn btn-danger btn-block btnx">
+                            Reset
+                        </a>
+                    </div>
+                    <div class="col-lg-6">
+                        <button type="submit" class="btn btn-primary btn-block btnx">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
